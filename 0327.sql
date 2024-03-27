@@ -128,6 +128,13 @@ select round(months_between(sysdate,hiredate))from emp;// 반올림
 select round(months_between(sysdate,hiredate)) as roundf,
 trunc(months_between(sysdate,hiredate)) as truncf from emp;// 소수점 아래 버린것과 반올림 비교
 
+//next_day, last_day
+select sysdate, next_day(sysdate,'월요일')from dual;//돌아오는 월요일
+select sysdate, next_day(sysdate,6)from dual;// 일요일은 숫자로 1부터시작
+select next_day(next_day(sysdate,'목요일'),'목요일')from dual;// 지정일로부터 돌아오는 지정요일의 그다음 돌아오는 지정요일
+select sysdate, last_day(sysdate) from dual;// 기준달로부터 그 달의 마지막날
+select last_day('2000/08/09')from dual;
+select hiredate||'--'||last_day(hiredate) as 수습기간 from emp;
 
 
 
