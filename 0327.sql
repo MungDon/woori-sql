@@ -92,11 +92,41 @@ select sal, trunc(sal/12)from emp;  // ³ª´©°í ³ª¿Â ¼Ò¼öÁ¡À» ¹ö·Á¹ö¸²(= Á¤¼ö·Îº¯È
 select trunc(3.14)from dual;        //¼Ò¼öÁ¡ ÀÌÇÏ¹ö¸®°í Á¤¼ö·Î º¯È¯
 
 
+//floor - °¡Àå °¡±î¿î Á¤¼ö·Î º¯È¯
+select floor(3.14) from dual;
+select floor(-3.14) from dual;
+//mod ³ª¸ÓÁö 
+//mod(³ª´²Áö´Â¼ö, ³ª´©´Â¼ö)
+select mod(15,6)from dual;// ³ª¸ÓÁö 3
+select mod(15,5)from dual;//³ª¸ÓÁö ¾øÀ½
 
 
+//<³¯Â¥ °ü·Ã ÇÔ¼ö>//
 
+//sysdate - ³¯Â¥ °ü·Ã ÇÔ¼ö
+//sysdate
+select sysdate from dual;
+select sysdate, sysdate-1, sysdate+8 from dual;
 
+//add_months(ÁöÁ¤³¯,Ãß°¡ÇÒ ¿ù(´Ş))- ¿ù(´Ş)À» Ãß°¡ÇÔ
+select add_months(sysdate,3)from dual;
+select ename, hiredate, add_months(hiredate,516) as Á¤³â from emp;// ÀÔ»çÀÏ·ÎºÎÅÍ 516´ŞÁö³­ Á¤³âÀÌ¶ó´Â ÄÃ·³À» Ãâ·Â
 
+select empno||'-'||ename as »ç¿øÁ¤º¸ ,
+hiredate as ÀÔ»çÀÏ, 
+add_months(hiredate,120) as ½ÂÁø,
+add_months(hiredate,516) as Á¤³â  from emp;
+
+// months_between - µÎ ³¯Â¥ÀÇ °³¿ù ¼ö Â÷ÀÌ¸¦ ±¸ÇÒ¶§ »ç¿ë
+select months_between(sysdate,hiredate)from emp;// ³¯Â¥ Â÷ÀÌ°¡ ¼Ò¼öÁ¡À¸·Î ³ª¿È
+
+select months_between(sysdate,hiredate),
+round(months_between(sysdate,hiredate)) as month from emp;// ¹İ¿Ã¸² ÇÑ°Í ¾ÈÇÑ°Í
+
+select round(months_between(sysdate,hiredate))from emp;// ¹İ¿Ã¸²
+
+select round(months_between(sysdate,hiredate)) as roundf,
+trunc(months_between(sysdate,hiredate)) as truncf from emp;// ¼Ò¼öÁ¡ ¾Æ·¡ ¹ö¸°°Í°ú ¹İ¿Ã¸² ºñ±³
 
 
 
